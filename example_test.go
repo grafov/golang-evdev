@@ -2,11 +2,19 @@ package evdev_test
 
 import (
 	"fmt"
-	"evdev"
+	"github.com/gvalkov/golang-evdev"
 )
 
 func ExampleOpen() {
 	device := Open("/dev/input/event3")
+}
+
+// Listing accessible input devices.
+func ExampleListInputdevices() {
+	devices, err := evdev.ListInputDevices()
+	for _, dev := range devices {
+		fmt.Printf("%s %s %s", dev.Fn, dev.Name, dev.Phys)
+	}
 }
 
 func Example() {
